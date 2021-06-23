@@ -1,13 +1,17 @@
 package automation.hrms.entities.concretes;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import automation.hrms.core.entities.concrete.User;
 import lombok.AllArgsConstructor;
@@ -33,35 +37,35 @@ public class Candidate extends User{
 	@Column(name="national_identity")
 	private String nationalIdentity;
 	
-	@Column(name="birthdate")
-	private Date birthdate;
+	@Column(name="birth_date")
+	private LocalDate birthDate;
 	
 	@Column(name="regarding")
 	private String regarding;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "candidate")
 	private List<Education> userEducations;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "candidate")
 	private List<UserLanguage> userLanguages;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "candidate")
 	private List<WorkExperience> userExperience;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "candidate")
 	private List<Link> userLinks;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "candidate")
 	private List<Skill> userSkills;
 	
-	@OneToMany(mappedBy = "candidate")
-	private List<Image> userImages;
+	@JsonIgnore
+	@OneToOne(mappedBy = "candidate",optional=true, fetch=FetchType.LAZY)
+	private Image userImages;
 	
-	public Candidate(String email, String password, String firstName, String lastName, String nationalIdentity, Date birthDate) {
-		super(email,password);
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.nationalIdentity = nationalIdentity;
-		this.birthdate = birthDate;
-	}
+	
 }

@@ -2,6 +2,7 @@ package automation.hrms.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,7 @@ import automation.hrms.entities.concretes.Skill;
 
 @RestController
 @RequestMapping("/api/skills")
+@CrossOrigin
 public class SkillsController {
 
 	private SkillService skillService;

@@ -5,6 +5,7 @@ import java.util.List;
 import automation.hrms.core.utilities.results.DataResult;
 import automation.hrms.core.utilities.results.Result;
 import automation.hrms.entities.concretes.Candidate;
+import automation.hrms.entities.dtos.CvDto;
 
 public interface CandidateService {
 
@@ -15,4 +16,5 @@ public interface CandidateService {
 	DataResult<Candidate> getById(int id);
 	DataResult<Candidate> getByMail(String email);
 	DataResult<Candidate> findByNationalityId(String nationalityId);
+	DataResult<CvDto> getCvById(int candidateId);
 }

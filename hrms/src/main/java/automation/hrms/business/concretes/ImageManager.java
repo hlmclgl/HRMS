@@ -52,12 +52,12 @@ public class ImageManager implements ImageService{
 	}
 
 	@Override
-	public DataResult<List<Image>> getByCandidateId(int candidateId) {
+	public DataResult<Image> getByCandidateId(int candidateId) {
 		var result =  this.imageDao.getByCandidateId(candidateId);
 		if (result != null) {
-			return new SuccessDataResult<List<Image>>(this.imageDao.getByCandidateId(candidateId));
+			return new SuccessDataResult<Image>(this.imageDao.getByCandidateId(candidateId));
 		}
-		return new ErrorDataResult<List<Image>>("Resim bulunamadı.");
+		return new ErrorDataResult<Image>("Resim bulunamadı.");
 	}
 
 }

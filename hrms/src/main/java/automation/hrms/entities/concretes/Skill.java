@@ -35,8 +35,6 @@ public class Skill {
 	
 	@ManyToOne()
 	@JsonIgnore()
-	@NotNull
-	@NotBlank
 	@JoinColumn(name="candidate_id")
 	private Candidate candidate;
 }

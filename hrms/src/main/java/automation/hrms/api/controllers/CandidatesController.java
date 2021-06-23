@@ -3,18 +3,22 @@ package automation.hrms.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import automation.hrms.business.abstracts.CandidateService;
 import automation.hrms.core.utilities.results.DataResult;
 import automation.hrms.core.utilities.results.Result;
 import automation.hrms.entities.concretes.Candidate;
+import automation.hrms.entities.dtos.CvDto;
 
 @RestController
 @RequestMapping("/api/candidates")
+@CrossOrigin
 public class CandidatesController {
 
 	private CandidateService candidateService;
@@ -53,5 +57,11 @@ public class CandidatesController {
 	@GetMapping("/getall")
 	public DataResult<List<Candidate>> getAll() {
 		return this.candidateService.getAll();
+	}
+	
+	@GetMapping("getcvbyid")
+	public DataResult<CvDto> getCvById(@RequestParam int candidateId){
+		
+		return this.candidateService.getCvById(candidateId);
 	}
 }

@@ -49,7 +49,7 @@ public class AuthManager implements AuthService{
 
 	@Override
 	public Result employerRegister(EmployerForRegisterDto employer) {
-		Result result = BusinessRules.run(checkDomain(employer),
+		Result result = BusinessRules.run(
 				checkEmailVerification(employer.getEmail()), checkEmail(employer.getEmail()), checkPassword(employer.getPassword(), employer.getRepassword()));
 		
 		if (result != null) {
@@ -63,7 +63,7 @@ public class AuthManager implements AuthService{
 
 	@Override
 	public Result candidateRegister(CandidateForRegisterDto candidate) {
-		Result result = BusinessRules.run(checkEmail(candidate.getEmail()), checkNationalityId(candidate.getNalionalityId()),
+		Result result = BusinessRules.run(checkEmail(candidate.getEmail()), checkNationalityId(candidate.getNationalIdentity()),
 				checkEmailVerification(candidate.getEmail()), checkPassword(candidate.getPassword(), candidate.getRepassword()));
 		if(result != null) {
 			return result;
@@ -107,10 +107,11 @@ public class AuthManager implements AuthService{
 	}
 	
 	private Result checkDomain(EmployerForRegisterDto employerForRegisterDto) {
-		String domain = employerForRegisterDto.getEmail().split("@")[1];
+		String domain = employerForRegisterDto.getEmail().split("@")[0];
         if(domain.equals(employerForRegisterDto.getWebAddress())){
         	return new SuccessResult();
         }
+        System.out.println(employerForRegisterDto.getEmail().split("@")[0]);
         return new ErrorResult("Şirket maili ile domain aynı olmalıdır.");
 	}
 	

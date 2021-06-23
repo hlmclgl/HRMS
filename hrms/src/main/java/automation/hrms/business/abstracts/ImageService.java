@@ -13,5 +13,5 @@ public interface ImageService {
 
     Result add(Image candidateImage, MultipartFile file) throws IOException;
     DataResult<List<Image>> getAll();
-    DataResult<List<Image>> getByCandidateId(int candidateId);
+    DataResult<Image> getByCandidateId(int candidateId);
 }

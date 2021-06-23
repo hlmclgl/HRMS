@@ -8,6 +8,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import automation.hrms.core.entities.concrete.User;
@@ -29,19 +30,21 @@ public class Employer extends User{
 	@Column(name="company_name")
 	private String companyName;
 	
-	@Column(name="web_adress")
-	private String webAdress;
+	@Column(name="web_address")
+	private String webAddress;
 	
-	@Column(name="telephone")
-	private String telephone;
+	@Column(name="phone_number")
+	private String phoneNumber;
+	
+	@Column(name="is_confirm")
+	private boolean isConfirm;
 
+	@JsonIgnore
 	@OneToMany(mappedBy= "employer")
 	private List<JobAdvert> jobAdverts;
 	
-	public Employer(String email,String password, String companyName, String webAddress, String phoneNumber) {
-		super(email,password);
-		this.companyName = companyName;
-		this.webAdress = webAddress;
-		this.telephone = phoneNumber;
-	}
+	@JsonIgnore
+	@OneToMany(mappedBy = "employer")
+	private List<ActivationByStaff> activationByStaffs;
+
 }

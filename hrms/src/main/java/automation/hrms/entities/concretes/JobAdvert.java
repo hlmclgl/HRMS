@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -42,27 +41,36 @@ public class JobAdvert {
 	@Column(name="open_positions", nullable=false)
 	private int openPosition;
 	
-	@Column(name="deadline", nullable=false)
+	@Column(name="deadline")
 	private LocalDate deadline;
 	
 	@Column(name="is_active", nullable=false)
 	private boolean isActive;
 	
-	@Column (name = "releaseDate", nullable = false)
+	@Column (name = "releaseDate")
 	private LocalDate releaseDate;
 	
-	@JsonIgnoreProperties({"user_id","web_address","company_name","telephone","email","password"})
+
 	@ManyToOne()
 	@JoinColumn(name = "employer_id")
 	private Employer employer;
 	
-	@JsonIgnoreProperties({"id"})
+
 	@ManyToOne()
 	@JoinColumn(name = "city_id")
 	private City city;
 	
-	@JsonIgnoreProperties({"id"})
+
 	@ManyToOne()
 	@JoinColumn(name="job_id")
-	private Job job; 
+	private Job job;
+	
+	@ManyToOne()
+	@JoinColumn(name = "worktype_id")
+	private WorkType workType;
+	
+	@ManyToOne()
+	@JoinColumn(name = "workingplace_id")
+	private WorkingPlace workingPlace;
+	
 }

@@ -1,9 +1,14 @@
 package automation.hrms.entities.concretes;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import automation.hrms.core.entities.concrete.User;
 import lombok.AllArgsConstructor;
@@ -31,4 +36,8 @@ public class Staff extends User{
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "staff")
+	private List<ActivationByStaff> activationByStaffs;
 }

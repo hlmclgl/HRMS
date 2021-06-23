@@ -1,6 +1,7 @@
 package automation.hrms.entities.dtos;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
@@ -22,10 +23,10 @@ public class CandidateForRegisterDto {
 	private String lastName;
     
 	@NotBlank
-	private String nalionalityId;
+	private String nationalIdentity;
     
 	@NotBlank
-	private Date birthDate;
+	private LocalDate birthDate;
     
 	@NotBlank
 	@Email
